@@ -1,0 +1,43 @@
+<div class="mx-auto p-5">
+    <form>
+      <div class="form-group">
+        <label for="name"> Title
+        <input name="IncidentTitle" type="text" class="form-control" [(ngModel)]="myIncident.title" id="name" required>
+        </label>
+      </div>
+      <div class="form-group" *ngFor="let source of myIncident.sources">  
+        <label>Sources
+        <app-tree-selector></app-tree-selector>
+      </label>
+      </div>
+      <div class="form-group">
+        <label>Description
+        <input name="IncidentDescription" type="text" class="form-control" [(ngModel)]="myIncident.description" placeholder="no value">
+      </label>
+      </div>
+      <div class="form-group">
+        <label>Impact
+        <input name="IncidentImpact" type="text" class="form-control" [(ngModel)]="myIncident.impact" placeholder="no value">
+      </label>
+      </div>
+      <div class="form-group">
+        <label>Time
+        <input name="IncidentTime" type="text" class="form-control" [(ngModel)]="myIncident.time" placeholder="no value">
+      </label>
+      </div>
+      <div class="form-group">
+        <label>Email
+        <input name="IncidentEmail" type="text" class="form-control" [(ngModel)]="myIncident.email" placeholder="no value">
+      </label>
+      </div>
+      <div class="form-group">
+        <label>Technical data
+        <input name="IncidentTechnicalData" type="text" class="form-control" [(ngModel)]="myIncident.technicalData" placeholder="no value"> 
+      </label>
+      </div>
+  
+      <button (click)="deleteIncident()" class="btn btn-fail">Delete</button>
+      <button (click)="submitIncident()" class="btn btn-success">Submit</button>
+      </form>
+  </div>
+  <button></button>

@@ -1,0 +1,79 @@
+<div *ngIf=(done)>
+    <h1>Add Incident</h1>
+    <div>
+      <mat-form-field class="example-full-width">
+        <mat-label>Title</mat-label>
+        <input matInput placeholder="Title" [(ngModel)] = "myIncident.title">
+      </mat-form-field>
+    <div >
+        <mat-accordion #sourcesAccordion>
+            <mat-expansion-panel *ngFor="let source of myIncident.sources; let i = index" [(expanded)]="sourcesPanelOpened[i]">
+              <mat-expansion-panel-header>
+                Source {{i + 1}}
+              </mat-expansion-panel-header>
+               <app-tree-selector [incidentTree] = "sourcesTree" [(ngModel)] = "source.source">
+               </app-tree-selector>
+            </mat-expansion-panel>
+          </mat-accordion>
+    </div>
+   <!-- <div>
+        <mat-accordion>
+            <mat-expansion-panel *ngFor="let event of myIncident.events; let i = index" [(expanded)]="eventsPanelOpened[i]">
+              <mat-expansion-panel-header>
+                Event {{i + 1}}
+              </mat-expansion-panel-header>
+              <mat-form-field>
+                <mat-select placeholder="triggered by" [(ngModel)]="event.triggeredBy">
+                  <ng-container *ngFor="let source of myIncident.sources; let j = index">
+                    <mat-option *ngIf="source.source.length > 0" [value]="source.id">
+                      Source {{j + 1}}: {{source.source[source.source.length -1]}}
+                    </mat-option>
+                  </ng-container>
+                  <ng-container *ngFor="let trigEvent of myIncident.events; let j = index">
+                    <mat-option *ngIf="trigEvent.event.length > 0 && trigEvent.id != event.id" [value]="trigEvent.id">
+                      Event {{j + 1}}: {{trigEvent.event[trigEvent.event.length -1]}}
+                    </mat-option>
+                  </ng-container>
+                </mat-select>
+              </mat-form-field>
+               <app-tree-selector [incidentTree] = "eventsTree" [(ngModel)] = "event.event" [triggeredBy] = event.triggeredBy>
+               </app-tree-selector>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <div style="float: left; width: 100%">
+            <button mat-button style="margin-top: 15px; float: right" (click)="addEvent()">
+              <i class="fa fa-plus" style="color: #4CAF50"></i> add Event
+            </button>
+          </div>
+    </div> -->
+    <div>
+        <mat-accordion>
+            <mat-expansion-panel *ngFor="let entity of myIncident.entities; let i = index" [(expanded)]="entitiesPanelOpened[i]">
+              <mat-expansion-panel-header>
+                Entity {{i + 1}}
+              </mat-expansion-panel-header>
+               <app-tree-selector [incidentTree] = "entitiesTree" [(ngModel)] = "entity.entity">
+               </app-tree-selector>
+               <mat-form-field class="detailTextarea">
+                  <textarea matInput placeholder="Detailed description" [(ngModel)] = "entity.description" class="detailTextarea"></textarea>
+                </mat-form-field>
+            </mat-expansion-panel>
+           </mat-accordion>
+                
+    </div>
+
+    <div>
+      <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              Impact
+            </mat-expansion-panel-header>
+             <app-tree-selector [incidentTree] = "impactTree" [(ngModel)] = "impact">
+             </app-tree-selector>
+          </mat-expansion-panel>
+         </mat-accordion>
+              
+  </div>
+    <button (click)="postIncident()">submit</button>
+  </div>
+</div>

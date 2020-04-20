@@ -1,0 +1,60 @@
+<div *ngFor="let choice of choices; let i = index">
+  <mat-form-field [ngStyle]="{'margin-left.px': 15*i}">
+    <mat-select placeholder="{{i === 0?(incidentTree.name) + 'type':'Detail ' + i}}" 
+                (selectionChange)= "selectionChange($event.value, i)"
+                [value] = "selections?selections[i]:undefined">
+      <mat-option *ngFor="let child of choice | eventConstraints:triggeredBy:incident"
+                  [value] = "child">
+        {{child.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br />
+</div>
+
+<!--<ng-template *ngTemplateOutlet="recursiveListTmpl; context:{ $implicit: incidentTree }"></ng-template>
+<ng-template *ngTemplateOutlet="recursiveList; context:{ $implicit: incidentTree }"></ng-template>
+
+<ng-template #recursiveListTmpl let-incidentTree>
+  <div *ngFor="let choice of choices; let i = index">
+    hallo
+  <mat-form-field [ngStyle]="{'margin-left.px': 15*i}">
+  <mat-select  (selectionChange)="selectionChange($event.value, i)" [value]="selections?selections[i]:undefined" >
+    <mat-option *ngFor="let item of incidentTree" [value]="item.id">
+      {{item.name}}
+      <mat-optgroup *ngIf="item.elements != undefined">
+        <ng-container *ngTemplateOutlet="recursiveListTmpl; context:{ $implicit: item.elements }"></ng-container>
+      </mat-optgroup>
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+</div>
+</ng-template>
+
+<ng-template #recursiveList let-incidentTree>
+  <ul *ngFor="let choice of choices; let i = index">
+    <li *ngFor="let item of incidentTree" [value]="item.id">
+      {{item.name}}
+      <ul *ngIf="item.elements != undefined">
+        <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: item.elements }"></ng-container>
+      </ul>
+    </li>
+  </ul>
+</ng-template> -->
+
+<!--ngProjectAs="mat-select"
+
+
+<div *ngFor="let choice of choices; let i = index">
+<mat-form-field [ngStyle]="{'margin-left.px': 15*i}">
+<mat-select  (selectionChange)="selectionChange($event.value, i)" [value]="selections?selections[i]:undefined">
+  <mat-option *ngFor="let item of incidentTree" [value]="item.id">
+    {{item.id}}
+    <mat-option *ngIf="item['elements'] != undefined">
+      <ng-container *ngTemplateOutlet="recursiveListTmpl; context:{ $implicit: item['elements'] }"></ng-container>
+    </mat-option>
+  </div>
+  </mat-option>
+</mat-select>
+</mat-form-field>
+</div>-->
