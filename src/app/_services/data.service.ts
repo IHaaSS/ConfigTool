@@ -44,7 +44,10 @@ export class DataService {
   }
 
   getEvents() {
-    return this.events
+    console.log("getEvents")
+    return this.http.get<SelectModel>(this.eventsUrl).pipe(
+      catchError(this.handleError<Source>('get Events Fail'))
+    ); 
   }
 
   getEnities() {

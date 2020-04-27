@@ -21,55 +21,10 @@ export class IncidentsComponent implements OnInit {
   stringEvents: String
   stringSources: String
   stringEntities: String
-  v = JSON.stringify({elements:[{name :"test" , elements:[{name1: "test1"}, {name1:"test1"}]}, {name:"test"},{name:"test"} ]})
-  t = JSON.parse(this.v)
-  n = {
-    "Source": {
-     "Actor": {
-        "Individual": {
-          "Outsider": null,
-          "Insider": null,
-          "Trusted Insider": null,
-          "Privileged Insider": null
-        },
-        "Group": {
-          "Ad hoc": null,
-          "Established": null
-        },
-        "Organization": {
-          "Competitor": null,
-          "Supplier": null,
-          "Partner": null,
-          "Customer": null
-        },
-        "Nation-State": null
-      },
-      "Structure": {
-        "IT Equipment": {
-          "Storage": null,
-          "Processing": null,
-          "Communications": null,
-          "Display": null,
-          "Sensor": null,
-          "Controller": null
-        },
-        "Environmental Controls": {
-          "Temperature/Humidity Controls": null,
-          "Power Supply": null
-        },
-        "Software": {
-          "Operating System": null,
-          "Networking": null,
-          "General-Purpose Application": null,
-          "Mission-Sepcific Application": null
-        }
-      }
-    }
-  }
   constructor(private incidentService: IncidentService, private _router:Router, private communicationService: CommunicationService) { }
 
-  ngOnInit(): void {
-    this.getAsyncIncidents();
+  async ngOnInit(): Promise<void> {
+    await this.getAsyncIncidents();
   }
 
   async getAsyncIncidents(): Promise<void> {

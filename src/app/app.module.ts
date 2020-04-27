@@ -23,6 +23,7 @@ import { TreeSelectorComponent } from './_sites/tree-selector/tree-selector.comp
 import { EventConstraintsPipe } from './_pipes/event-constraints.pipe';
 import { KeysPipe } from './_pipes/keys.pipe';
 import { TablePipe } from './_pipes/table.pipe';
+import { AddQuestionComponent } from './_sites/add-question/add-question.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { TablePipe } from './_pipes/table.pipe';
     TreeSelectorComponent,
     EventConstraintsPipe,
     KeysPipe,
-    TablePipe
+    TablePipe,
+    AddQuestionComponent
   ],
   imports: [
     BrowserModule,

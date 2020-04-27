@@ -37,7 +37,7 @@ export class TreeSelectorComponent implements OnInit {
     this.choices[0] = this.incidentTree.elements
     console.log("tree selector component incident tree")
     console.log(Object.values(this.incidentTree)[0])
-    console.log(this.choices)
+    console.log(this.choices[0])
     
   }
 
@@ -45,6 +45,7 @@ export class TreeSelectorComponent implements OnInit {
     console.log("selectionChange")
     console.log(value)
     console.log(i)
+    console.log(this.selections)
     for (let j = this.selections.length - 2; j > i; j--) {
       this.choices.pop();
       this.selections.pop();
@@ -58,6 +59,7 @@ export class TreeSelectorComponent implements OnInit {
       if (this.choices.length == 0)
         //this.choices[0] = this.incidentTree[Object.keys(this.incidentTree)[0]]
         this.choices[0] = this.incidentTree
+        console.log(this.choices[0])
     }
     else
       this.selections.pop()
@@ -65,6 +67,7 @@ export class TreeSelectorComponent implements OnInit {
       this.selections.push(value.id)
     if (value.elements)
       this.choices[i + 1] = value.elements;
+      console.log("value elements")
       console.log(this.choices[i+1])
       
       //console.log(this.choices[i][value])

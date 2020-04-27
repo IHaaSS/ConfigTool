@@ -21,9 +21,10 @@ export class AddIncidentComponent implements OnInit {
   sourcesPanelOpened: boolean[] = [true];
   eventsPanelOpened: boolean[] = [true];
   entitiesPanelOpened: boolean[] = [true]
-  impactKeys: string[] = Object.keys(Impact);
-  impact = Impact;
-  impactDescription = ImpactDescription;
+  impactsPanelOpened: boolean[] = [true]
+  //impactKeys: string[] = Object.keys(Impact);
+  //impact = Impact;
+  //impactDescription = ImpactDescription;
   done:boolean
   sourcesTree: {}
   impactTree:{}
@@ -55,10 +56,10 @@ export class AddIncidentComponent implements OnInit {
     this.entitiesTree = enTemp;
     console.log(this.entitiesTree)
 
-    /*const ev = await this.dataService.getEvents().toPromise(); 
+    const ev = await this.dataService.getEvents().toPromise(); 
     let evList = JSON.stringify(ev[0])
     let evTemp = JSON.parse(evList)
-    this.entitiesTree = evTemp;*/
+    this.eventsTree = evTemp;
 
     const i = await this.dataService.getImpacts().toPromise(); 
     let iList = JSON.stringify(i[0])
