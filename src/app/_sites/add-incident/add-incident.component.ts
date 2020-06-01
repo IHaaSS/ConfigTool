@@ -9,6 +9,7 @@ import { DataService } from 'src/app/_services/data.service';
 import { IncidentService } from 'src/app/_services/incident.service';
 import { Source } from 'src/app/_classes/source';
 import { SelectModel } from 'src/app/_classes/select-model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-incident',
@@ -33,7 +34,7 @@ export class AddIncidentComponent implements OnInit {
 
   loading: boolean = false;
 
-  constructor(private http: HttpClient, private dataService: DataService, private incidentService: IncidentService) {
+  constructor(private http: HttpClient, private dataService: DataService, private incidentService: IncidentService, private _router:Router) {
   }
 
   ngOnInit(): void {
@@ -137,8 +138,7 @@ export class AddIncidentComponent implements OnInit {
       (val) => {
         console.log(
           val);
-        //this._router.navigateByUrl('/questions')
-
+        this._router.navigateByUrl('/incidents')
 
       },
       response => {

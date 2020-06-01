@@ -14,6 +14,7 @@ export class IncidentService {
   private incidentsUrl = 'http://127.0.0.1:5000/incidents'
   private userIncidentsUrl = 'http://127.0.0.1:5000/user_incidents'
   private sourcesUrl = 'http://127.0.0.1:5000/sources'
+  private transferUrl = 'http://127.0.0.1:5000/transferIncidents'
 
   constructor(private http: HttpClient) { }
 
@@ -37,6 +38,19 @@ export class IncidentService {
     const url = 'this.incidentsUrl/id'
     return this.http.delete(this.incidentsUrl +'/' + id).pipe(
       catchError(this.handleError('deleteIncident'))
+    );
+  }
+
+  deleteUserIncident(id:any): Observable<{}> {
+    return this.http.delete(this.userIncidentsUrl +'/' + id).pipe(
+      catchError(this.handleError('deleteIncident'))
+    );
+  }
+
+  transerferIncident(incident): Observable<Incident> {
+    return this.http.post<Incident>(this.transferUrl, incident)
+    .pipe(
+      catchError(this.handleError('transferUserIncident', incident))
     );
   }
 

@@ -2,7 +2,7 @@
   <mat-form-field [ngStyle]="{'margin-left.px': 15*i}">
     <mat-select placeholder="{{i === 0?(incidentTree.name) + 'type':'Detail ' + i}}" 
                 (selectionChange)= "selectionChange($event.value, i)"
-                [value] = "selections?selections[i]:undefined">
+                >
       <mat-option *ngFor="let child of choice | eventConstraints:triggeredBy:incident"
                   [value] = "child">
         {{child.name}}

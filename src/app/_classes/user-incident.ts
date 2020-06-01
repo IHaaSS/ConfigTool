@@ -2,6 +2,7 @@ import {Impact} from './incident'
 
 export class UserIncident {
     _id:{$oid:Number};
+    myId: number;
       sources: {
         source: string[];
         description: string;
@@ -18,12 +19,17 @@ export class UserIncident {
         description: string;
         id: number;
       }[];
-      impact: Impact;
+      impacts: {
+        impact: string[];
+        description: string;
+        id: number;
+      }[]
       time: Date;
       email: string;
       description: string;
       technicalData: string;
       title: string;
+      staged: boolean
     
       idCount: number = 0;
 }

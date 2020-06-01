@@ -24,6 +24,7 @@ import { EventConstraintsPipe } from './_pipes/event-constraints.pipe';
 import { KeysPipe } from './_pipes/keys.pipe';
 import { TablePipe } from './_pipes/table.pipe';
 import { AddQuestionComponent } from './_sites/add-question/add-question.component';
+import { QuestionSelectorComponent } from './_sites/question-selector/question-selector.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { AddQuestionComponent } from './_sites/add-question/add-question.compone
     EventConstraintsPipe,
     KeysPipe,
     TablePipe,
-    AddQuestionComponent
+    AddQuestionComponent,
+    QuestionSelectorComponent
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,60 @@
-<p>add-question works!</p>
+<div class="container p-3" *ngIf=(done)>
+  <h2>Add Question</h2>
+  <div class="container bg-light">
+    <mat-form-field class="full-width pt-3">
+      <mat-label>Question</mat-label>
+      <input matInput placeholder="Text" [(ngModel)]="myQuestion.text">
+    </mat-form-field>
+    <div>
+      <mat-label>Please add the attributes that this question adresses</mat-label>
+      <mat-accordion class="p-2" #sourcesAccordion>
+        <mat-expansion-panel *ngFor="let source of myQuestion.sources; let i = index"
+          [(expanded)]="sourcesPanelOpened[i]">
+          <mat-expansion-panel-header>
+            Source attribute {{i + 1}}
+          </mat-expansion-panel-header>
+          <app-question-selector [incidentTree]="sourcesTree" [(ngModel)]="source.source">
+          </app-question-selector>
+          <button mat-button style="margin-top: 15px; float: right" (click)="addSource()">Add Source</button>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <div>
+      <mat-accordion class="p-2">
+        <mat-expansion-panel *ngFor="let event of myQuestion.events; let i = index" [(expanded)]="eventsPanelOpened[i]">
+          <mat-expansion-panel-header>
+            Event attribute {{event.event}}
+          </mat-expansion-panel-header>
+          <app-question-selector [incidentTree]="eventsTree" [(ngModel)]="event.event">
+          </app-question-selector>
+          <button mat-button style="margin-top: 15px; float: right" (click)="addEvent()">Add Event</button>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <div>
+      <mat-accordion class="p-2">
+        <mat-expansion-panel *ngFor="let entity of myQuestion.entities; let i = index"
+          [(expanded)]="entitiesPanelOpened[i]">
+          <mat-expansion-panel-header>
+            Entity attribute {{i + 1}}
+          </mat-expansion-panel-header>
+          <app-question-selector [incidentTree]="entitiesTree" [(ngModel)]="entity.entity">
+          </app-question-selector>
+          <button mat-button style="margin-top: 15px; float: right" (click)="addEntity()">Add Entity</button>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <div>
+      <mat-accordion class="p-2">
+        <mat-expansion-panel *ngFor="let impact of myQuestion.impacts; let i = index"
+          [(expanded)]="impactsPanelOpened[i]">
+          <mat-expansion-panel-header>
+            Impact attribute {{i + 1}}
+          </mat-expansion-panel-header>
+          <app-question-selector [incidentTree]="impactTree" [(ngModel)]="impact.impact">
+          </app-question-selector>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <button (click)="postIncident()">submit</button>
+  </div>

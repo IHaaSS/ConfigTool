@@ -1,0 +1,12 @@
+<div *ngFor="let choice of choices; let i = index">
+    <mat-form-field [ngStyle]="{'margin-left.px': 15*i}">
+      <mat-select placeholder="{{i === 0?(incidentTree.name) + 'type':'Detail ' + i}}" 
+                  (selectionChange)= "selectionChange($event.value, i)">
+        <mat-option *ngFor="let child of choice"
+                    [value] = "child">
+          {{child.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br />
+  </div>

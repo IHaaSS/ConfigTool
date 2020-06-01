@@ -26,6 +26,7 @@ export class Incident{
       description: string;
       technicalData: string;
       title: string;
+      transmittedBy: string;
     
       idCount: number = 0;
     

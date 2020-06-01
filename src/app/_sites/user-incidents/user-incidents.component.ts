@@ -44,4 +44,9 @@ export class UserIncidentsComponent implements OnInit {
     console.log(row)
   }
 
+  public passIncident(row: UserIncident): void {
+    this.communicationService.updateIncident(row);
+    this._router.navigateByUrl('/detail');
+  }
+
 }

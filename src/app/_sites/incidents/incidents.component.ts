@@ -14,7 +14,7 @@ import { TablePipe } from '../../_pipes/table.pipe';
 })
 export class IncidentsComponent implements OnInit {
 
-  displayedColumns: string[] = ['title','sources', 'events', 'entities', 'impact', 'time','email','technicalData'];
+  displayedColumns: string[] = ['title','sources', 'events', 'entities', 'impact', 'transmitted by'];
   userIncidents: Incident[]
   dataSource= new MatTableDataSource<Incident>(this.userIncidents);
   selIncident = new Observable<Incident>(); 
@@ -43,9 +43,9 @@ export class IncidentsComponent implements OnInit {
     console.log(row)
   }
 
-  public passIncident(row: Incident): void {
+  /*public passIncident(row: Incident): void {
     this.communicationService.updateIncident(row);
     this._router.navigateByUrl('/detail');
-  }
+  }*/
 
 }

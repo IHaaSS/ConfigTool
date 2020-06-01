@@ -1,31 +1,39 @@
 <div class="container p-3">
 <h2>User Incidents</h2>
 <table mat-table [dataSource]="dataSource">
-    <!-- Position Column -->
     <ng-container matColumnDef="title">
         <th mat-header-cell *matHeaderCellDef> Title </th>
         <td mat-cell *matCellDef="let incident"> {{incident.title }} </td>
       </ng-container>
   
-      <!-- Name Column -->
       <ng-container class="mx-3" matColumnDef="sources">
         <th mat-header-cell *matHeaderCellDef> Sources </th>
-        <td mat-cell *matCellDef="let incident "> {{incident.sources}} </td>
+        <td mat-cell *matCellDef="let incident "><div style="white-space: pre;" *ngFor = "let source of incident.sources; let i = index">
+          {{incident.sources[i].source}}
+
+        </div> </td>
       </ng-container>
 
       <ng-container class="mx-5" matColumnDef="entities">
         <th mat-header-cell *matHeaderCellDef> Enities </th>
-        <td mat-cell *matCellDef="let incident"> {{incident.entities}} </td>
+        <td mat-cell *matCellDef="let incident"> <div style="white-space: pre;" *ngFor = "let entity of incident.entities; let i = index">
+          {{incident.entities[i].entity}}
+
+        </div> </td>
       </ng-container>
 
       <ng-container  class="mx-5" matColumnDef="events">
         <th mat-header-cell *matHeaderCellDef> Events </th>
-        <td mat-cell *matCellDef="let incident"> {{incident.events}} </td>
+        <td mat-cell *matCellDef="let incident"> <div style="white-space: pre;" *ngFor = "let event of incident.events; let i = index">
+          {{incident.events[i].event}}
+        </div> </td>
       </ng-container>
 
       <ng-container class="mx-5" matColumnDef="impact">
         <th mat-header-cell *matHeaderCellDef> Impact </th>
-        <td mat-cell *matCellDef="let incident"> {{incident.impact}} </td>
+        <td mat-cell *matCellDef="let incident"> <div style="white-space: pre;" *ngFor = "let event of incident.impacts; let i = index">
+          {{incident.impacts[i].impact}}
+        </div> </td>
       </ng-container>
 
       <ng-container class="mx-5" matColumnDef="time">
@@ -43,7 +51,7 @@
         <td mat-cell *matCellDef="let incident"> {{incident.technicalData}} </td>
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="passIncident(row)"> 
       </tr>
 </table>
 </div>

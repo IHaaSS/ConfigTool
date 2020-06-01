@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { IncidentService } from 'src/app/_services/incident.service';
 import { CommunicationService } from 'src/app/_services/communication.service';
 import { DataService } from 'src/app/_services/data.service';
+import { UserIncident } from 'src/app/_classes/user-incident';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-detail-incident',
@@ -12,7 +14,7 @@ import { DataService } from 'src/app/_services/data.service';
 })
 export class DetailIncidentComponent implements OnInit {
 
-  myIncident: Incident; 
+  myIncident: UserIncident; 
   subscription; 
   sourcesPanelOpened: boolean[] = [true];
   eventsPanelOpened: boolean[] = [true];
@@ -32,7 +34,7 @@ export class DetailIncidentComponent implements OnInit {
   eventsTree:{}
   choices = []
 
-  constructor(private communicationService: CommunicationService, private incidentService:IncidentService, private dataService: DataService) {
+  constructor(private _router:Router, private communicationService: CommunicationService, private incidentService:IncidentService, private dataService: DataService) {
     this.subscription = this.communicationService.getIncident().
     subscribe(data => this.myIncident = data); 
     console.log("myIncident")
@@ -70,17 +72,18 @@ export class DetailIncidentComponent implements OnInit {
 
   }
 
-
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
   public deleteIncident():void{
-    console.log(this.myIncident._id.$oid)
-    this.incidentService.deleteIncident(this.myIncident._id.$oid).subscribe(); 
+    console.log(this.myIncident.myId)
+    this.incidentService.deleteUserIncident(this.myIncident.myId).subscribe(); 
+    this._router.navigateByUrl('/userIncidents');
   }
 
-  public submitIncident():void {
-    //test
+  public transferIncident():void{
+    this.incidentService.transerferIncident(this.myIncident).subscribe();
+    this._router.navigateByUrl('/userIncidents');
   }
 }
