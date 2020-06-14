@@ -1,15 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
-import { MatInputModule } from '@angular/material/input';
-import { MatExpansionModule } from '@angular/material/expansion';
 import { Incident, Impact, ImpactDescription } from 'src/app/_classes/incident';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { DataService } from 'src/app/_services/data.service';
 import { IncidentService } from 'src/app/_services/incident.service';
-import { Source } from 'src/app/_classes/source';
-import { SelectModel } from 'src/app/_classes/select-model';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-add-incident',
@@ -134,7 +129,7 @@ export class AddIncidentComponent implements OnInit {
     console.log(JSON.stringify(this.myIncident))
     let headers = new HttpHeaders()
       .set('Content-Type', 'application/json');
-    this.http.post('http://127.0.0.1:5000/incidents', JSON.stringify(this.myIncident), { headers: headers, responseType: "text" }).subscribe(
+    this.http.post(environment.baseUrl+'/incidents', JSON.stringify(this.myIncident), { headers: headers, responseType: "text" }).subscribe(
       (val) => {
         console.log(
           val);

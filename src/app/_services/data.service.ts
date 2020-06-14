@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { ResolveEnd } from '@angular/router';
 import { Source } from '../_classes/source';
 import { SelectModel } from '../_classes/select-model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +16,10 @@ export class DataService {
   events
   entities
 
-  sourceUrl = 'http://127.0.0.1:5000/sources'
-  eventsUrl = 'http://127.0.0.1:5000/events'
-  entitiesUrl = 'http://127.0.0.1:5000/entities'
-  impactsUrl = 'http://127.0.0.1:5000/impacts'
+  sourceUrl = environment.baseUrl + '/sources'
+  eventsUrl = environment.baseUrl + '/events'
+  entitiesUrl = environment.baseUrl + '/entities'
+  impactsUrl = environment.baseUrl + '/impacts'
 
   constructor(private http: HttpClient) { }
 

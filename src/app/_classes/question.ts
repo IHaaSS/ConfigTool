@@ -1,5 +1,6 @@
 export class Question {
     text: string;
+    counterText: string;
     sources: {
       source: string[];
     }[];
@@ -73,6 +74,18 @@ export class Question {
         if(impact.impact.length > 0)
           return true;
       }
+      return false;
+    }
+
+    checkText(): boolean{
+      if(this.text && this.text.trim())
+        return true;
+      return false;
+    }
+
+    checkCounterText(): boolean{
+      if(this.counterText && this.counterText.trim())
+        return true;
       return false;
     }
 

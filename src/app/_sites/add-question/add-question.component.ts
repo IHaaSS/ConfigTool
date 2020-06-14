@@ -4,6 +4,7 @@ import { DataService } from 'src/app/_services/data.service';
 import { QuestionService } from 'src/app/_services/question.service';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-add-question',
@@ -102,11 +103,18 @@ export class AddQuestionComponent implements OnInit {
     console.log(this.myQuestion)
   }
 
+  checkInput() {
+    if (this.myQuestion.text !== undefined && this.myQuestion.counterText !== undefined)
+      return true
+    else
+      return false
+  }
+
   postIncident() {
     console.log(JSON.stringify(this.myQuestion))
     let headers = new HttpHeaders()
       .set('Content-Type', 'application/json');
-    this.http.post('http://127.0.0.1:5000/questions', JSON.stringify(this.myQuestion), { headers: headers, responseType: "text" }).subscribe(
+    this.http.post(environment.baseUrl + '/questions', JSON.stringify(this.myQuestion), { headers: headers, responseType: "text" }).subscribe(
       (val) => {
         console.log(
           val);

@@ -3,7 +3,12 @@
   <div class="container bg-light">
     <mat-form-field class="full-width pt-3">
       <mat-label>Question</mat-label>
-      <input matInput placeholder="Text" [(ngModel)]="myQuestion.text">
+      <input matInput placeholder="Text" [(ngModel)]="myQuestion.text" required> 
+    </mat-form-field>
+    <br>
+    <mat-form-field class="full-width pt-3">
+      <mat-label>Counter Question</mat-label>
+      <input matInput placeholder="Text" [(ngModel)]="myQuestion.counterText" required>
     </mat-form-field>
     <div>
       <mat-label>Please add the attributes that this question adresses</mat-label>
@@ -56,5 +61,5 @@
         </mat-expansion-panel>
       </mat-accordion>
     </div>
-    <button (click)="postIncident()">submit</button>
-  </div>
+    <button (click)="postIncident()" [disabled] = "!myQuestion.checkText() && !myQuestion.checkCounterText()"> submit
+</button>

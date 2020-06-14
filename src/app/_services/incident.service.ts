@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Incident } from '../_classes/incident';
 import { catchError, map, tap } from 'rxjs/operators';
 import { UserIncident } from '../_classes/user-incident';
+import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +12,10 @@ import { UserIncident } from '../_classes/user-incident';
 export class IncidentService {
 
   public incident: Incident = new Incident();
-  private incidentsUrl = 'http://127.0.0.1:5000/incidents'
-  private userIncidentsUrl = 'http://127.0.0.1:5000/user_incidents'
-  private sourcesUrl = 'http://127.0.0.1:5000/sources'
-  private transferUrl = 'http://127.0.0.1:5000/transferIncidents'
+  private incidentsUrl = environment.baseUrl + '/incidents'
+  private userIncidentsUrl = environment.baseUrl + '/user_incidents'
+  private sourcesUrl = environment.baseUrl +'/sources'
+  private transferUrl = environment.baseUrl+'/transferIncidents'
 
   constructor(private http: HttpClient) { }
 
@@ -35,7 +36,6 @@ export class IncidentService {
   }
 
   deleteIncident(id:any): Observable<{}> {
-    const url = 'this.incidentsUrl/id'
     return this.http.delete(this.incidentsUrl +'/' + id).pipe(
       catchError(this.handleError('deleteIncident'))
     );
