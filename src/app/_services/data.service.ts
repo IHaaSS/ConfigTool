@@ -7,6 +7,11 @@ import { Source } from '../_classes/source';
 import { SelectModel } from '../_classes/select-model';
 import { environment } from 'src/environments/environment';
 
+import sources from '../_model/sources.json';
+import events from '../_model/events.json';
+import entities from '../_model/entities.json';
+import impacts from '../_model/impacts.json';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -37,32 +42,37 @@ export class DataService {
     //this.entities = this.http.get<Object[]>(this.entities)
   }
 
-  getSources(): Observable<Source> {
+  getSources() {
     console.log("getSources")
-    return this.http.get<SelectModel>(this.sourceUrl).pipe(
-      catchError(this.handleError<Source>('getSourcesFaaaaaaiiiiil'))
-    ); 
+    return new Observable(subscriber => {
+      console.log(sources);
+      subscriber.next(sources);
+      subscriber.complete();
+    })
   }
 
   getEvents() {
     console.log("getEvents")
-    return this.http.get<SelectModel>(this.eventsUrl).pipe(
-      catchError(this.handleError<Source>('get Events Fail'))
-    ); 
+    return new Observable(subscriber => {
+      subscriber.next(events);
+      subscriber.complete();
+    })
   }
 
   getEnities() {
     console.log("getEntities")
-    return this.http.get<SelectModel>(this.entitiesUrl).pipe(
-      catchError(this.handleError<Source>('get Enities Fail'))
-    ); 
+    return new Observable(subscriber => {
+      subscriber.next(entities);
+      subscriber.complete();
+    })
   }
 
   getImpacts() {
     console.log("getImpacts")
-    return this.http.get<SelectModel>(this.impactsUrl).pipe(
-      catchError(this.handleError<Source>('get Impact Fail'))
-    ); 
+    return new Observable(subscriber => {
+      subscriber.next(impacts);
+      subscriber.complete();
+    })
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

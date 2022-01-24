@@ -34,23 +34,23 @@ export class AddQuestionComponent implements OnInit {
   async getData(): Promise<void> {
     console.log("getAsync")
     const s = await this.dataService.getSources().toPromise();
-    let sList = JSON.stringify(s[0])
+    let sList = JSON.stringify(s)
     let sTemp = JSON.parse(sList)
     this.sourcesTree = sTemp;
 
     const en = await this.dataService.getEnities().toPromise(); 
-    let enList = JSON.stringify(en[0])
+    let enList = JSON.stringify(en)
     let enTemp = JSON.parse(enList)
     this.entitiesTree = enTemp;
     console.log(this.entitiesTree)
 
     const ev = await this.dataService.getEvents().toPromise(); 
-    let evList = JSON.stringify(ev[0])
+    let evList = JSON.stringify(ev)
     let evTemp = JSON.parse(evList)
     this.eventsTree = evTemp;
 
     const i = await this.dataService.getImpacts().toPromise(); 
-    let iList = JSON.stringify(i[0])
+    let iList = JSON.stringify(i)
     let iTemp = JSON.parse(iList)
     this.impactTree = iTemp;
 
