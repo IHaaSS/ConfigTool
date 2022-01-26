@@ -14,12 +14,9 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     console.log("App on Init")
-    //this.dataService.setData()
-    this.load()
   }
 
   async load() {
-    await this.dataService.setData()
   }
   title = 'Tool';
 }
