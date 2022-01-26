@@ -83,7 +83,10 @@ export class DetailIncidentComponent implements OnInit {
   }
 
   public transferIncident():void{
-    this.incidentService.transerferIncident(this.myIncident).subscribe();
+    console.log("transferring Incident")
+    console.log(this.myIncident);
+    console.log(JSON.stringify({myId: this.myIncident.myId}));
+    this.incidentService.transerferIncident(JSON.stringify({myId: this.myIncident.myId})).subscribe();
     this._router.navigateByUrl('/userIncidents');
   }
 }

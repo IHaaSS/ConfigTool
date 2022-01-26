@@ -14,8 +14,7 @@ export class IncidentService {
   public incident: Incident = new Incident();
   private incidentsUrl = environment.baseUrl + '/incidents'
   private userIncidentsUrl = environment.baseUrl + '/user_incidents'
-  private sourcesUrl = environment.baseUrl +'/sources'
-  private transferUrl = environment.baseUrl+'/transferIncidents'
+  private transferUrl = environment.baseUrl+'/user_incidents/approve'
 
   constructor(private http: HttpClient) { }
 
@@ -48,7 +47,8 @@ export class IncidentService {
   }
 
   transerferIncident(incident): Observable<Incident> {
-    return this.http.post<Incident>(this.transferUrl, incident)
+    let options = { headers: new HttpHeaders().set('Content-Type', 'application/json')};
+    return this.http.post<Incident>(this.transferUrl, incident, options)
     .pipe(
       catchError(this.handleError('transferUserIncident', incident))
     );
